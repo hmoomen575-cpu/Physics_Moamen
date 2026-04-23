@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Year 2 - Static Electricity Presentation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .slide {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.6s ease-out;
+            color: #333;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); }
+        }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .lesson-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lesson-number {
+            background: white;
+            color: #4facfe;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2em;
+        }
+
+        .lesson-title {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .content-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .content-box h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .content-box p, .content-box li {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .content-box ul {
+            margin-left: 20px;
+        }
+
+        .content-box li {
+            margin: 8px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-left: 5px solid #e17055;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        .highlight-box strong {
+            color: #d63031;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border: 3px solid #00cec9;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            animation: glow 3s infinite;
+        }
+
+        .formula {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2d3436;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .formula-desc {
+            margin-top: 10px;
+            color: #636e72;
+            font-size: 0.95em;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            color: #5a67d8;
+            font-weight: 600;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .question-section h2 {
+            color: #d63031;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        .question-type {
+            display: inline-block;
+            background: #d63031;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .question p {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #2d3748;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .option.correct {
+            background: #c6f6d5;
+            border-color: #48bb78;
+        }
+
+        .option.wrong {
+            background: #fed7d7;
+            border-color: #f56565;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #667eea;
+            min-width: 100px;
+            text-align: center;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border: 2px solid #9b59b6;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .problem-box h4 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+
+        .solution {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s;
+            z-index: 1001;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .title-slide h1 {
+                font-size: 2em;
+            }
+            .slide {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+
+        .show-answer-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .show-answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .answer-hidden {
+            display: none !important;
+        }
+
+        .answer-visible {
+            display: block !important;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .mcq-answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #c6f6d5;
+            border-radius: 10px;
+            border-left: 4px solid #48bb78;
+            color: #22543d;
+            font-weight: 600;
+        }
+
+        .mcq-answer.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .fill-answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #c6f6d5;
+            border-radius: 10px;
+            border-left: 4px solid #48bb78;
+            color: #22543d;
+            font-weight: 600;
+        }
+
+        .fill-answer.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .solution-hidden {
+            display: none !important;
+        }
+
+        .solution-visible {
+            display: block !important;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .answer-label {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 8px;
+        }
+
+        .your-answer-label {
+            display: inline-block;
+            background: #ed8936;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            margin-right: 10px;
+        }
+
+        .option.revealed-correct {
+            background: #c6f6d5;
+            border-color: #48bb78;
+            position: relative;
+        }
+
+        .option.revealed-correct::after {
+            content: " ✅ Correct";
+            color: #22543d;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="presentation-container">
+
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active title-slide">
+            <div style="margin-top: 80px;">
+                <span class="badge">⚡ STEM Year 2</span>
+                <span class="badge">📘 Physics</span>
+                <h1>Static Electricity</h1>
+                <p class="subtitle">Unit 1: Electrostatics</p>
+                <p style="margin-top: 40px; font-size: 1.2em; opacity: 0.8;">
+                    Prepared by Eng: Moamen💸<br>
+                    Revised by Eng: Mohamed Hassan
+                </p>
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 1em; opacity: 0.7;">Fathalla Applied Technology Schools</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Unit Overview -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">📋</div>
+                <div class="lesson-title">Unit Overview</div>
+            </div>
+
+            <div class="content-box">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Understand the concept of static electricity</li>
+                    <li>State types of attractive and repulsive forces</li>
+                    <li>Apply Coulomb's law</li>
+                    <li>Identify equivalent capacitance in series and parallel</li>
+                    <li>Identify capacitor charging process</li>
+                    <li>Deduce factors affecting electrostatic force</li>
+                    <li>Identify the electric field and its intensity</li>
+                </ul>
+            </div>
+
+            <div class="two-column">
+                <div class="highlight-box">
+                    <strong>📚 Lessons:</strong><br>
+                    1. Meaning of Static Electricity<br>
+                    2. Coulomb's Law<br>
+                    3. Repulsive & Attractive Forces<br>
+                    4. The Electric Field<br>
+                    5. The Electric Capacitor
+                </div>
+                <div class="highlight-box">
+                    <strong>🔑 Key Concepts:</strong><br>
+                    • Electric Charge<br>
+                    • Electrostatic Induction<br>
+                    • Coulomb's Law<br>
+                    • Electric Field Intensity<br>
+                    • Capacitance
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Lesson 1 - Introduction -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Meaning of Static Electricity</div>
+            </div>
+
+            <div class="content-box">
+                <h3>⚡ What is Electricity?</h3>
+                <p>Electricity is the <strong>flow of electrical charges</strong> or power. The charges could be in the form of <strong>electrons</strong> or <strong>ions</strong>.</p>
+                <p>Electricity is a <span style="color: #e17055; font-weight: 700;">secondary energy source</span> — we get it from conversion of other sources like coal, natural gas, oil, or nuclear power.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>🔋 Electric Charge</h3>
+                <ul>
+                    <li>A physical quantity that can be transferred from one object to another</li>
+                    <li>Charged objects exert forces on other charged and uncharged objects</li>
+                    <li>Measured in <strong>Coulombs (C)</strong></li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Two Types of Electric Charge:</strong><br>
+                <span style="color: #d63031; font-size: 1.3em;">➕ Positive Charge</span> &nbsp;&nbsp; 
+                <span style="color: #0984e3; font-size: 1.3em;">➖ Negative Charge</span>
+            </div>
+        </div>
+
+        <!-- Slide 4: Conductors vs Insulators -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Conductors & Insulators</div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box" style="border-left-color: #00b894;">
+                    <h3>🔌 Conductors</h3>
+                    <p>Materials in which charges can move about <strong>freely</strong></p>
+                    <ul>
+                        <li>Metals (Copper, Silver, Gold)</li>
+                        <li>Rich in free electrons</li>
+                        <li>Allow electricity to flow easily</li>
+                    </ul>
+                </div>
+
+                <div class="content-box" style="border-left-color: #e17055;">
+                    <h3>🚫 Insulators</h3>
+                    <p>Materials in which electric charge is <strong>not easily transported</strong></p>
+                    <ul>
+                        <li>Wood, paper, plastics, ceramics</li>
+                        <li>Poor in free electrons</li>
+                        <li>Block electricity flow</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-placeholder">
+           <img src="c:\Users\moome\OneDrive\Desktop\Conductors.jpg" alt="تخيل في صورة مقارنة بقا">
+            </div>
+        </div>
+
+        <!-- Slide 5: Static Electricity Definition -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Static Electricity Definition</div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Definition:</strong> The electricity produced by <span style="color: #d63031;">friction (rubbing)</span> is called <strong>frictional electricity</strong> or <strong>static electricity</strong>.
+            </div>
+
+            <div class="content-box">
+                <h3>🔍 Key Points:</h3>
+                <ul>
+                    <li><strong>"Static"</strong> means stationary or not moving</li>
+                    <li>Charges do <strong>NOT</strong> flow through the conductor</li>
+                    <li>Charges only <strong>transfer</strong> from one substance to another</li>
+                    <li>The material acquires positive or negative charge → called <strong>charged/electrified bodies</strong></li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula" style="font-size: 1.5em;">⚡ Electrostatics = Study of electrified bodies at rest</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Charging by Rubbing -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Charging by Rubbing</div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Rubbed With</th>
+                            <th>Charge Acquired</th>
+                            <th>Behavior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🔵 Polythene rod</td>
+                            <td>Woolen cloth</td>
+                            <td><span style="color: #0984e3;">➖ Negative</span></td>
+                            <td>Attract each other</td>
+                        </tr>
+                        <tr>
+                            <td>🟡 Perspex/Cellulose acetate</td>
+                            <td>Woolen cloth</td>
+                            <td><span style="color: #d63031;">➕ Positive</span></td>
+                            <td>Attract each other</td>
+                        </tr>
+                        <tr>
+                            <td>⚫ Ebonite</td>
+                            <td>Fur</td>
+                            <td><span style="color: #0984e3;">➖ Negative</span></td>
+                            <td>Attract each other</td>
+                        </tr>
+                        <tr>
+                            <td>🟠 Glass</td>
+                            <td>Silk cloth</td>
+                            <td><span style="color: #d63031;">➕ Positive</span></td>
+                            <td>Attract each other</td>
+                        </tr>
+                        <tr>
+                            <td>🟠 Glass</td>
+                            <td>Flannel cloth</td>
+                            <td><span style="color: #0984e3;">➖ Negative</span></td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box">
+                <strong>💡 Important Note:</strong> The substance used for rubbing determines the charge, NOT the material type!<br>
+                Example: Glass rubbed with <strong>flannel</strong> → Negative, but with <strong>silk</strong> → Positive
+            </div>
+        </div>
+
+        <!-- Slide 7: Electrostatic Induction -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Electrostatic Induction</div>
+            </div>
+
+            <div class="image-placeholder">
+             <img src="c:\Users\moome\OneDrive\Desktop\download.png" alt="تخيل في صورة بقا">
+            </div>
+
+            <div class="content-box">
+                <h3>🔄 Process Steps:</h3>
+                <ol>
+                    <li><strong>Start:</strong> Two neutral metal spheres touching each other</li>
+                    <li><strong>Induce:</strong> Bring negatively charged rod close → electrons repelled to far side</li>
+                    <li><strong>Ground:</strong> Connect wire to ground → free electrons flow out</li>
+                    <li><strong>Remove:</strong> Remove wire first, then rod → sphere has uniform positive charge</li>
+                </ol>
+            </div>
+
+            <div class="highlight-box">
+                <strong>🎯 Result:</strong> Attraction of uncharged object by charged object near it is due to <strong>electrostatic induction</strong>.
+            </div>
+        </div>
+
+        <!-- Slide 8: Dangers & Uses -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <div class="lesson-title">Dangers & Uses of Static Electricity</div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box" style="border-left-color: #d63031;">
+                    <h3>⚠️ Dangers</h3>
+                    <ul>
+                        <li>🌩️ <strong>Lightning</strong> — damages buildings, harms people</li>
+                        <li>💻 <strong>Computer damage</strong> — sensitive components</li>
+                        <li>🔥 <strong>Fire ignition</strong> — flammable gases (petrol stations)</li>
+                        <li>🦠 <strong>Dust & germs</strong> — attracted to charged objects</li>
+                    </ul>
+                </div>
+
+                <div class="content-box" style="border-left-color: #00b894;">
+                    <h3>✅ Uses</h3>
+                    <ul>
+                        <li>🚗 <strong>Car painting</strong> — even coating with charged powder</li>
+                        <li>🖨️ <strong>Computer printers</strong> — toner distribution</li>
+                        <li>🏭 <strong>Smoke removal</strong> — electrostatic plates in chimneys</li>
+                        <li>🏥 <strong>Medical equipment</strong> — anti-static protection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Lesson 2 - Coulomb's Law -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">2</div>
+                <div class="lesson-title">Coulomb's Law</div>
+            </div>
+
+            <div class="content-box">
+                <h3>🔬 Coulomb's Experiment</h3>
+                <p>Coulomb studied how the force between two charged spheres <strong>A</strong> and <strong>B</strong> depended on distance.</p>
+                <ul>
+                    <li>Measured force needed to twist suspending wire</li>
+                    <li>Placed equal charges on spheres</li>
+                    <li>Varied distance <strong>d</strong> between them</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <strong>📊 Findings:</strong><br>
+                • Force varies <strong>inversely</strong> with square of distance: F ∝ 1/d²<br>
+                • Force varies <strong>directly</strong> with product of charges: F ∝ q₁q₂
+            </div>
+
+            <div class="formula-box">
+                <div class="formula">F = k × (q₁ × q₂) / d²</div>
+                <div class="formula-desc">
+                    k = 9 × 10⁹ N·m²/C² (proportionality constant)<br>
+                    q₁, q₂ = charges in Coulombs | d = distance in meters
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Coulomb's Law - Forces -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">2</div>
+                <div class="lesson-title">Forces: Attraction & Repulsion</div>
+            </div>
+
+            <div class="image-placeholder">
+                <img src="c:\Users\moome\OneDrive\Desktop\Screenshot 2026-04-23 203142.png" alt="تخيل في صورة بقا">
+            </div>
+
+            <div class="two-column">
+                <div class="content-box" style="border-left-color: #e17055;">
+                    <h3>💥 Repulsive Force</h3>
+                    <p>When charges have <strong>same sign</strong>:</p>
+                    <ul>
+                        <li>Both positive (++): <strong>REPEL</strong></li>
+                        <li>Both negative (−−): <strong>REPEL</strong></li>
+                        <li>Force points <strong>away</strong> from each other</li>
+                    </ul>
+                </div>
+
+                <div class="content-box" style="border-left-color: #00b894;">
+                    <h3>🧲 Attractive Force</h3>
+                    <p>When charges have <strong>opposite signs</strong>:</p>
+                    <ul>
+                        <li>Positive + Negative: <strong>ATTRACT</strong></li>
+                        <li>Force points <strong>toward</strong> each other</li>
+                        <li>Newton's Third Law applies!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula">F₁ on₂ = −F₂ on₁</div>
+                <div class="formula-desc">Equal in magnitude, opposite in direction</div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Lesson 3 - Solved Problem -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">2</div>
+                <div class="lesson-title">Solved Problem - Coulomb's Law</div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Problem 1:</h4>
+                <p>Two charges are separated by <strong>3 cm</strong>. Object A has charge <strong>+6 μC</strong>, Object B has <strong>−3 μC</strong>. What is the force on Object A?</p>
+
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Solution:</strong><br>
+                    F = k × (qₐ × qʙ) / d²<br>
+                    F = (9 × 10⁹) × (6 × 10⁻⁶ × 3 × 10⁻⁶) / (3 × 10⁻²)²<br>
+                    F = (9 × 10⁹) × (18 × 10⁻¹²) / (9 × 10⁻⁴)<br>
+                    F = <strong>1.8 × 10² N</strong> (180 N)
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Problem 2:</h4>
+                <p>Find distance between q₁ = 26 μC and q₂ = −47 μC for force magnitude of <strong>5.7 N</strong>.</p>
+
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Solution:</strong><br>
+                    d² = k × q₁ × q₂ / F<br>
+                    d² = (9 × 10⁹ × 26 × 10⁻⁶ × 47 × 10⁻⁶) / 5.7<br>
+                    d² = 1.93 m²<br>
+                    d = <strong>1.39 m</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Lesson 4 - Electric Field -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">4</div>
+                <div class="lesson-title">The Electric Field</div>
+            </div>
+
+            <div class="content-box">
+                <h3>🌐 Definition</h3>
+                <p>The <strong>electric field</strong> is the area around a charge in which the effect of that charge can be felt.</p>
+                <p>OR: A field defined by the magnitude of the electric force at any given point in space.</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>⚡ Properties:</strong>
+                <ul>
+                    <li>Exerts force on other charges</li>
+                    <li>Has magnitude and direction → <strong>Vector quantity</strong></li>
+                    <li>Measured by <strong>Electrometer</strong></li>
+                    <li>Field lines show direction a <strong>positive</strong> charge would move</li>
+                </ul>
+            </div>
+
+            <div class="image-placeholder">
+                <img src="c:\Users\moome\OneDrive\Desktop\Electric Field.png" alt="تخيل في صورة بقا">
+            </div>
+        </div>
+
+        <!-- Slide 13: Electric Field Intensity -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">4</div>
+                <div class="lesson-title">Electric Field Intensity</div>
+            </div>
+
+            <div class="content-box">
+                <h3>📐 Formula</h3>
+                <p><strong>Electric field intensity (E)</strong> = Electric field lines per unit area</p>
+                <ul>
+                    <li>Varies with amount of charge</li>
+                    <li>Decreases with square of distance from source</li>
+                    <li>Depends on amount of charges and distance between them</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula">E = F / q = k × q / d²</div>
+                <div class="formula-desc">
+                    E = Electric field intensity (N/C)<br>
+                    F = Force (N) | q = Charge (C) | d = Distance (m)
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Example:</h4>
+                <p>A force of <strong>2 N</strong> acts on charge <strong>4 μC</strong>. Calculate E.</p>
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    E = F/q = 2 / (4 × 10⁻⁶) = <strong>5 × 10⁵ N/C</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Lesson 5 - Capacitor -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">5</div>
+                <div class="lesson-title">The Electric Capacitor</div>
+            </div>
+
+            <div class="content-box">
+                <h3>🔋 Definition</h3>
+                <p>Two parallel metal plates separated by an <strong>insulator</strong> (dielectric).</p>
+                <p>Used in: radio tuning, power filters, car ignition, camera flashes</p>
+            </div>
+
+            <div class="image-placeholder">
+               <img src="c:\Users\moome\OneDrive\Desktop\Capstors.png" alt="تخيل في صورة بقا">
+            </div>
+
+            <div class="highlight-box">
+                <strong>When charged:</strong><br>
+                • One plate: <span style="color: #d63031;">+Q (Positive)</span><br>
+                • Other plate: <span style="color: #0984e3;">−Q (Negative)</span><br>
+                • Creates <strong>potential difference (V)</strong> between them
+            </div>
+
+            <div class="formula-box">
+                <div class="formula">Q = C × V</div>
+                <div class="formula-desc">
+                    Q = Charge (Coulombs) | C = Capacitance (Farads) | V = Voltage (Volts)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Capacitor Connections -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">5</div>
+                <div class="lesson-title">Capacitor Connections</div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box" style="border-left-color: #e17055;">
+                    <h3>🔗 Series Connection</h3>
+                    <ul>
+                        <li>Charge: <strong>Q = Q₁ = Q₂ = Q₃</strong></li>
+                        <li>Voltage splits: <strong>Vₜ = V₁ + V₂ + V₃</strong></li>
+                        <li>Equivalent: <strong>1/Cₑq = 1/C₁ + 1/C₂ + 1/C₃</strong></li>
+                    </ul>
+                    <div style="margin-top: 10px; padding: 10px; background: #ffeaa7; border-radius: 8px;">
+                        <strong>If equal:</strong> Cₑq = C/n
+                    </div>
+                </div>
+
+                <div class="content-box" style="border-left-color: #00b894;">
+                    <h3>🔗 Parallel Connection</h3>
+                    <ul>
+                        <li>Voltage: <strong>Vₜ = V₁ = V₂ = V₃</strong></li>
+                        <li>Charge splits: <strong>Qₜ = Q₁ + Q₂ + Q₃</strong></li>
+                        <li>Equivalent: <strong>Cₑq = C₁ + C₂ + C₃</strong></li>
+                    </ul>
+                    <div style="margin-top: 10px; padding: 10px; background: #c6f6d5; border-radius: 8px;">
+                        <strong>If equal:</strong> Cₑq = n × C
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-placeholder">
+            </div>
+        </div>
+
+        <!-- Slide 16: Solved Problem - Capacitors -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">5</div>
+                <div class="lesson-title">Solved Problem - Capacitors</div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Problem:</h4>
+                <p>Find equivalent capacitance of network: 3μF, 11μF, (12μF series 6μF), all parallel, then series with 9μF.</p>
+
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Step 1:</strong> 12μF and 6μF in series<br>
+                    1/C' = 1/12 + 1/6 = 3/12 = 1/4 → <strong>C' = 4μF</strong><br><br>
+
+                    <strong>Step 2:</strong> 3μF, 11μF, 4μF in parallel<br>
+                    C'' = 3 + 11 + 4 = <strong>18μF</strong><br><br>
+
+                    <strong>Step 3:</strong> 18μF series with 9μF<br>
+                    1/Cₑq = 1/18 + 1/9 = 3/18 = 1/6 → <strong>Cₑq = 6μF</strong>
+                </div>
+            </div>
+
+            <div class="image-placeholder">
+            </div>
+        </div>
+
+        <!-- Slide 17: Questions - Fill in Blanks -->
+        <div class="slide question-section">
+            <h2>📝 Questions: Fill in the Blanks</h2>
+
+            <div class="question">
+                <span class="question-type">Complete</span>
+                <p>1. Electricity is the flow of electrical _______ or power.</p>
+                <button class="show-answer-btn" onclick="showFillAnswer(this)">🔍 Show Answer</button>
+                <div class="fill-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>charges</strong> (electrons or ions)
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-type">Complete</span>
+                <p>2. The word "static" means _______ or not moving.</p>
+                <button class="show-answer-btn" onclick="showFillAnswer(this)">🔍 Show Answer</button>
+                <div class="fill-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>stationary</strong>
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-type">Complete</span>
+                <p>3. Coulomb's Law: F = k × (q₁ × q₂) / _______.</p>
+                <button class="show-answer-btn" onclick="showFillAnswer(this)">🔍 Show Answer</button>
+                <div class="fill-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>d²</strong> (distance squared)
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-type">Complete</span>
+                <p>4. Like charges _______ each other, unlike charges _______ each other.</p>
+                <button class="show-answer-btn" onclick="showFillAnswer(this)">🔍 Show Answer</button>
+                <div class="fill-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>repel</strong>, <strong>attract</strong>
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-type">Complete</span>
+                <p>5. The unit of electric charge is the _______.</p>
+                <button class="show-answer-btn" onclick="showFillAnswer(this)">🔍 Show Answer</button>
+                <div class="fill-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>coulomb</strong> (C)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Questions - Multiple Choice -->
+        <div class="slide question-section">
+            <h2>❓ Questions: Multiple Choice</h2>
+
+            <div class="question" data-correct="B">
+                <span class="question-type">MCQ</span>
+                <p>1. What is the value of k in Coulomb's law?</p>
+                <div class="options">
+                    <div class="option" data-value="A" onclick="selectMCQ(this, 'A')">A) 8 × 10⁸ N·m²/C²</div>
+                    <div class="option" data-value="B" onclick="selectMCQ(this, 'B')">B) 9 × 10⁹ N·m²/C²</div>
+                    <div class="option" data-value="C" onclick="selectMCQ(this, 'C')">C) 6 × 10⁶ N·m²/C²</div>
+                    <div class="option" data-value="D" onclick="selectMCQ(this, 'D')">D) 10 × 10¹⁰ N·m²/C²</div>
+                </div>
+                <button class="show-answer-btn" onclick="showMCQAnswer(this)">🔍 Show Answer</button>
+                <div class="mcq-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>B) 9 × 10⁹ N·m²/C²</strong>
+                </div>
+            </div>
+
+            <div class="question" data-correct="B">
+                <span class="question-type">MCQ</span>
+                <p>2. Which material becomes positively charged when rubbed with wool?</p>
+                <div class="options">
+                    <div class="option" data-value="A" onclick="selectMCQ(this, 'A')">A) Polythene rod</div>
+                    <div class="option" data-value="B" onclick="selectMCQ(this, 'B')">B) Perspex/Cellulose acetate</div>
+                    <div class="option" data-value="C" onclick="selectMCQ(this, 'C')">C) Ebonite</div>
+                    <div class="option" data-value="D" onclick="selectMCQ(this, 'D')">D) Glass with flannel</div>
+                </div>
+                <button class="show-answer-btn" onclick="showMCQAnswer(this)">🔍 Show Answer</button>
+                <div class="mcq-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>B) Perspex/Cellulose acetate</strong>
+                </div>
+            </div>
+
+            <div class="question" data-correct="A">
+                <span class="question-type">MCQ</span>
+                <p>3. In series capacitors, what is the same for all capacitors?</p>
+                <div class="options">
+                    <div class="option" data-value="A" onclick="selectMCQ(this, 'A')">A) Charge (Q)</div>
+                    <div class="option" data-value="B" onclick="selectMCQ(this, 'B')">B) Voltage (V)</div>
+                    <div class="option" data-value="C" onclick="selectMCQ(this, 'C')">C) Capacitance (C)</div>
+                    <div class="option" data-value="D" onclick="selectMCQ(this, 'D')">D) Energy</div>
+                </div>
+                <button class="show-answer-btn" onclick="showMCQAnswer(this)">🔍 Show Answer</button>
+                <div class="mcq-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>A) Charge (Q)</strong>
+                </div>
+            </div>
+
+            <div class="question" data-correct="C">
+                <span class="question-type">MCQ</span>
+                <p>4. What is the unit of electric field intensity?</p>
+                <div class="options">
+                    <div class="option" data-value="A" onclick="selectMCQ(this, 'A')">A) Volt (V)</div>
+                    <div class="option" data-value="B" onclick="selectMCQ(this, 'B')">B) Coulomb (C)</div>
+                    <div class="option" data-value="C" onclick="selectMCQ(this, 'C')">C) Newton/Coulomb (N/C)</div>
+                    <div class="option" data-value="D" onclick="selectMCQ(this, 'D')">D) Ohm (Ω)</div>
+                </div>
+                <button class="show-answer-btn" onclick="showMCQAnswer(this)">🔍 Show Answer</button>
+                <div class="mcq-answer">
+                    <span class="answer-label">✅ Correct Answer</span><br>
+                    <strong>C) Newton/Coulomb (N/C)</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Questions - Problems -->
+        <div class="slide question-section">
+            <h2>🔢 Questions: Problems</h2>
+
+            <div class="problem-box">
+                <h4>📝 Problem 1:</h4>
+                <p>Two charges q₁ = +4 μC and q₂ = −6 μC are separated by 2 cm. Calculate the electrostatic force between them.</p>
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Solution:</strong><br>
+                    F = k × |q₁ × q₂| / d²<br>
+                    F = (9×10⁹) × (4×10⁻⁶ × 6×10⁻⁶) / (2×10⁻²)²<br>
+                    F = (9×10⁹) × (24×10⁻¹²) / (4×10⁻⁴)<br>
+                    F = <strong>540 N</strong> (attractive)
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Problem 2:</h4>
+                <p>A capacitor of 50 μF is connected to a 12V battery. Calculate the charge stored.</p>
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Solution:</strong><br>
+                    Q = C × V<br>
+                    Q = 50×10⁻⁶ × 12<br>
+                    Q = <strong>600 μC</strong> or <strong>6×10⁻⁴ C</strong>
+                </div>
+            </div>
+
+            <div class="problem-box">
+                <h4>📝 Problem 3:</h4>
+                <p>Two capacitors 6μF and 12μF are connected in series. Find the equivalent capacitance.</p>
+                <button class="show-answer-btn" onclick="showAnswer(this)">🔍 Show Answer</button>
+                <div class="solution solution-hidden">
+                    <strong>Solution:</strong><br>
+                    1/Cₑq = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4<br>
+                    Cₑq = <strong>4 μF</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Summary -->
+        <div class="slide">
+            <div class="lesson-header">
+                <div class="lesson-number">🎯</div>
+                <div class="lesson-title">Unit 1 Summary</div>
+            </div>
+
+            <div class="content-box">
+                <h3>🔑 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Static Electricity:</strong> Charges at rest, produced by friction</li>
+                    <li><strong>Coulomb's Law:</strong> F = k·q₁·q₂/d² — force between point charges</li>
+                    <li><strong>Like charges repel, opposite charges attract</strong></li>
+                    <li><strong>Electric Field:</strong> Area around charge where its effect is felt, E = F/q</li>
+                    <li><strong>Capacitor:</strong> Stores charge, Q = C·V</li>
+                    <li><strong>Series:</strong> 1/Cₑq = Σ(1/Cᵢ) | <strong>Parallel:</strong> Cₑq = ΣCᵢ</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box" style="text-align: center; font-size: 1.2em;">
+                <strong>🎉تم بحمد الله الانتهاء من Unit 1 بنجاح</strong><br>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◀ Previous</button>
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">20</span>
+        </div>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                currentSlide = newSlide;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Show answer for solved problems
+        function showAnswer(btn) {
+            const solution = btn.nextElementSibling;
+            solution.classList.remove('solution-hidden');
+            solution.classList.add('solution-visible');
+            btn.style.display = 'none';
+        }
+
+        // Show answer for fill in the blanks
+        function showFillAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            answer.classList.add('show');
+            btn.style.display = 'none';
+        }
+
+        // MCQ selection (just for visual feedback, doesn't reveal answer)
+        function selectMCQ(option, value) {
+            const question = option.closest('.question');
+            const options = question.querySelectorAll('.option');
+
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'wrong');
+            });
+
+            // Highlight selected
+            option.classList.add('correct');
+        }
+
+        // Show MCQ answer
+        function showMCQAnswer(btn) {
+            const question = btn.closest('.question');
+            const correctValue = question.getAttribute('data-correct');
+            const options = question.querySelectorAll('.option');
+            const answerDiv = btn.nextElementSibling;
+
+            // Highlight correct answer
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                if (opt.getAttribute('data-value') === correctValue) {
+                    opt.classList.add('revealed-correct');
+                }
+            });
+
+            // Show answer text
+            answerDiv.classList.add('show');
+            btn.style.display = 'none';
+        }
+
+        updateSlide();
+    </script>
+</body>
+</html>
